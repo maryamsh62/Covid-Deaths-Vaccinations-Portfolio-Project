@@ -37,3 +37,8 @@ It demonstrates my ability to:
 - What percentage of the population is **fully vaccinated** over time?
 - How do cumulative vaccination numbers grow **month-over-month**?
 
+
+## Visualization
+
+[TableauPublic](https://public.tableau.com/app/profile/maryamsadat.shakeri/vizzes) 
+
