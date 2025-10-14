@@ -6,18 +6,18 @@ ORDER BY 3,4
 --FROM PortfolioProject..CovidVaccinations
 --ORDER BY 3,4
 
---Select Data that we are going to be using
+--Select the Data that we are going to be using
 SELECT location, date, total_cases, new_cases, total_deaths, population
 FROM PortfolioProject..CovidDeaths
 ORDER BY 1,2
 
 --Looking at total cases vs total deaths
---Shows likelihood of dying if you contract covid in your country
+--Shows the likelihood of dying if you contract COVID in your country
 SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS death_percentage
 FROM PortfolioProject..CovidDeaths
 ORDER BY 1,2
 
---Looking at total cases vs total deaths in United States 2020-2021
+--Looking at total cases vs total deaths in the United States 2020-2021
 SELECT location, date, total_cases, total_deaths, (total_deaths/total_cases)*100 AS death_percentage
 FROM PortfolioProject..CovidDeaths
 WHERE location LIKE '%states%'
@@ -30,7 +30,7 @@ WHERE location = 'Iran'
 ORDER BY 1,2
 
 --Looking at total cases vs population
---Shows what percentage of population got covid
+--Shows what percentage of the population got COVID
 SELECT location, date, population, total_cases, (total_cases/population)*100 AS pop_covid_percentage
 FROM PortfolioProject..CovidDeaths
 --WHERE location LIKE '%states%'
@@ -44,7 +44,7 @@ FROM PortfolioProject..CovidDeaths
 GROUP BY location, population
 ORDER BY pop_covid_percentage DESC
 
---Shows countries with highest death count per population
+--Shows countries with the highest death count per population
 SELECT location, MAX(CAST(total_deaths AS int)) AS highest_death_count
 FROM PortfolioProject..CovidDeaths
 --WHERE location LIKE '%states%'
@@ -136,13 +136,13 @@ WHERE dea.continent IS NOT NULL
 --FROM #percentpopulation_vaccinated
 --ORDER BY 1,2,3
 
-SELECT continent, location, population,MAX(rollvaccinated_percentage) maxvaccinated_percentage
+SELECT continent, location, population, MAX(rollvaccinated_percentage) maxvaccinated_percentage
 FROM (SELECT *,(rollingpeople_vaccinated/population)*100 rollvaccinated_percentage
 FROM #percentpopulation_vaccinated) AS sub
 GROUP BY continent, location, population
 ORDER BY MAX(rollvaccinated_percentage) DESC
 
--- Creating view to store data for later visualizations
+-- Creating a view to store data for later visualizations
 USE PortfolioProject
 GO
 CREATE VIEW population_vaccinated_percentage AS
@@ -154,3 +154,4 @@ ON dea.location = vac.location
 and dea.date = vac.date
 WHERE dea.continent IS NOT NULL
 GO
+
